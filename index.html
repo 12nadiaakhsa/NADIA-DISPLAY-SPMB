@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EA MOTOR MAGETAN - Jual Beli Mobil Berkualitas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Import font futuristik sebagai pengganti Horizon */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&family=Orbitron:wght@700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Gaya Khusus untuk teks kuning (Font ala Horizon) */
+        .horizon-font {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-gold {
+            background: linear-gradient(45deg, #b8860b, #daa520);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.4);
+        }
+
+        .instagram-btn {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+            transition: transform 0.2s;
+        }
+
+        .instagram-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .car-image-container {
+            height: 220px;
+            overflow: hidden;
+            border-radius: 8px 8px 0 0;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .car-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .glass-card:hover .car-image-container img {
+            transform: scale(1.1);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating-car {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes shadowScale {
+            0% { transform: translateX(-50%) scaleX(1); opacity: 0.4; filter: blur(15px); }
+            50% { transform: translateX(-50%) scaleX(0.7); opacity: 0.15; filter: blur(25px); }
+            100% { transform: translateX(-50%) scaleX(1); opacity: 0.4; filter: blur(15px); }
+        }
+        .car-shadow {
+            animation: shadowScale 5s ease-in-out infinite;
+        }
+
+        /* Modal Styles */
+        #carModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navigasi -->
+    <nav class="p-6 flex justify-between items-center max-w-7xl mx-auto">
+        <div class="text-2xl font-bold horizon-font tracking-wider text-yellow-500">EA MOTOR MAGETAN</div>
+        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest opacity-80">
+            <a href="#home" class="hover:text-yellow-500 transition">Beranda</a>
+            <a href="#katalog" class="hover:text-yellow-500 transition">Katalog</a>
+            <a href="#kontak" class="hover:text-yellow-500 transition">Kontak</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="max-w-7xl mx-auto px-6 py-20 text-center md:text-left md:flex items-center min-h-[85vh]">
+        <div class="md:w-1/2 z-20">
+            <h2 class="text-yellow-500 text-lg mb-2 font-semibold horizon-font">Showroom Mobil Terpercaya</h2>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">Temukan Mobil <br>Impian Anda Di Sini.</h1>
+            <p class="text-lg opacity-70 mb-10 max-w-lg leading-relaxed">
+                EA MOTOR MAGETAN menyediakan berbagai pilihan mobil berkualitas dengan harga kompetitif dan pelayanan yang jujur serta transparan di wilayah Magetan.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#katalog" class="btn-gold px-8 py-4 rounded-full font-bold text-center tracking-wide">LIHAT KOLEKSI</a>
+                <a href="https://instagram.com/ea_motor_magetan" target="_blank" class="instagram-btn px-8 py-4 rounded-full font-bold text-center flex items-center justify-center gap-2">
+                    <i class="fab fa-instagram"></i> @ea_motor_magetan
+                </a>
+            </div>
+        </div>
+        
+        <div class="md:w-1/2 mt-24 md:mt-0 relative flex justify-center items-center">
+            <div class="absolute w-[110%] h-[90%] bg-blue-400/20 blur-[120px] rounded-full"></div>
+            
+            <div class="relative w-full max-w-2xl px-4">
+                <img src="https://nusantaratrip.com/wp-content/uploads/2023/03/Sewa-Mobil-malang-jogja-magelang.png" 
+                     alt="Mobil Unggulan EA Motor Magetan" 
+                     class="relative z-10 w-full h-auto floating-car"
+                     style="filter: drop-shadow(0 15px 40px rgba(0,0,0,0.6));">
+                
+                <div class="car-shadow absolute -bottom-4 left-1/2 -translate-x-1/2 w-[85%] h-12 bg-black blur-2xl rounded-[100%] z-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Katalog Section -->
+    <section id="katalog" class="max-w-7xl mx-auto px-6 py-24">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">Unit Tersedia</h2>
+            <div class="h-1 w-20 bg-yellow-500 mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Item 1: Honda CR-V -->
+            <div class="glass-card rounded-xl overflow-hidden">
+                <div class="car-image-container">
+                    <img src="https://berikut.id/wp-content/uploads/2022/09/detail_black_2021_0000_crv_rooftop_final2_min__1639376059095.jpg" alt="Honda CR-V Turbo EA Motor">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Honda CR-V Turbo</h3>
+                    <p class="text-sm opacity-60 mb-4 italic">Tahun 2021 | Automatic | Hitam</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-yellow-500 font-bold text-lg horizon-font">Rp 4XX.000.000</span>
+                        <button onclick="showDetails('crv')" class="text-sm border border-white/20 px-4 py-2 rounded hover:bg-white hover:text-blue-900 transition">Detail</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2: Toyota Fortuner -->
+            <div class="glass-card rounded-xl overflow-hidden">
+                <div class="car-image-container">
+                    <img src="https://www.otoinfo.id/wp-content/uploads/2024/02/Eksklusif-di-Tahun-2024-Toyota-Fortuner-VRZ-SUV-Berkelas-dengan-Inovasi-Hybrid.jpg" alt="Toyota Fortuner VRZ EA Motor">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Toyota Fortuner VRZ</h3>
+                    <p class="text-sm opacity-60 mb-4 italic">Tahun 2020 | Automatic | Putih</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-yellow-500 font-bold text-lg horizon-font">Rp 3XX.000.000</span>
+                        <button onclick="showDetails('fortuner')" class="text-sm border border-white/20 px-4 py-2 rounded hover:bg-white hover:text-blue-900 transition">Detail</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: Mitsubishi Pajero -->
+            <div class="glass-card rounded-xl overflow-hidden">
+                <div class="car-image-container">
+                    <img src="https://img.cintamobil.com/crop/760x480/2023/05/29/20230529092802-33fd.png" alt="Mitsubishi Pajero Dakar EA Motor">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Mitsubishi Pajero Dakar</h3>
+                    <p class="text-sm opacity-60 mb-4 italic">Tahun 2020 | Automatic | Abu-abu</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-yellow-500 font-bold text-lg horizon-font">Rp 4XX.000.000</span>
+                        <button onclick="showDetails('pajero')" class="text-sm border border-white/20 px-4 py-2 rounded hover:bg-white hover:text-blue-900 transition">Detail</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<!-- Item 4: Honda Civic -->
+            <div class="glass-card rounded-xl overflow-hidden">
+                <div class="car-image-container">
+                    <img src="https://img.cintamobil.com/crop/760x480/2023/05/29/20230529092802-33fd.png" alt="Mitsubishi Pajero Dakar EA Motor">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Mitsubishi Pajero Dakar</h3>
+                    <p class="text-sm opacity-60 mb-4 italic">Tahun 2020 | Automatic | Abu-abu</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-yellow-500 font-bold text-lg horizon-font">Rp 4XX.000.000</span>
+                        <button onclick="showDetails('pajero')" class="text-sm border border-white/20 px-4 py-2 rounded hover:bg-white hover:text-blue-900 transition">Detail</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Detail Unit -->
+    <div id="carModal" onclick="closeDetails(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button onclick="closeDetails()" class="absolute top-4 right-6 text-3xl opacity-50 hover:opacity-100">&times;</button>
+            <div id="modalBody" class="p-8">
+                <!-- Konten modal akan diisi via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Instagram Promo Section -->
+    <section class="py-20 bg-black/20">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <i class="fab fa-instagram text-6xl mb-6 text-pink-500"></i>
+            <h2 class="text-3xl font-bold mb-4">Cek Koleksi Terbaru Kami di Instagram</h2>
+            <p class="opacity-70 mb-8">Dapatkan update unit masuk setiap hari dan promo menarik hanya melalui akun resmi kami.</p>
+            <a href="https://instagram.com/ea_motor_magetan" target="_blank" class="instagram-btn inline-flex items-center gap-3 px-10 py-4 rounded-full font-bold text-xl shadow-lg">
+                Follow @ea_motor_magetan
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak" class="py-16 px-6 border-t border-white/10 mt-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <h3 class="text-2xl font-bold horizon-font text-yellow-500 mb-6">EA MOTOR MAGETAN</h3>
+                <p class="opacity-60 leading-relaxed">Pusat jual beli mobil bekas berkualitas di wilayah Magetan dan sekitarnya. Kejujuran adalah prioritas kami.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 uppercase tracking-widest text-sm">Lokasi Kami</h4>
+                <p class="opacity-60 leading-relaxed">
+                    Ds. Manjung, Kec. Panekan,<br>
+                    Kab. Magetan, Jawa Timur
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 uppercase tracking-widest text-sm">Hubungi Kami</h4>
+                <div class="space-y-4">
+                    <a href="https://wa.me/628123456789" class="flex items-center gap-3 hover:text-yellow-500 transition">
+                        <i class="fab fa-whatsapp text-green-500 text-xl"></i> 08123456789
+                    </a>
+                    <a href="https://instagram.com/ea_motor_magetan" target="_blank" class="flex items-center gap-3 hover:text-yellow-500 transition">
+                        <i class="fab fa-instagram text-pink-500 text-xl"></i> @ea_motor_magetan
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-20 opacity-30 text-xs">
+            &copy; 2021 EA MOTOR MAGETAN. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        const carData = {
+            crv: {
+                name: "Honda CR-V 1.5 Turbo",
+                year: "2021",
+                price: "Rp 4XX.000.000",
+                img: "https://berikut.id/wp-content/uploads/2022/09/detail_black_2021_0000_crv_rooftop_final2_min__1639376059095.jpg",
+                specs: [
+                    "Mesin: 1.5L VTEC Turbo",
+                    "Transmisi: CVT (Automatic)",
+                    "Warna: Crystal Black Pearl",
+                    "Kilometer: 25.xxx (Low KM)",
+                    "Pajak: Panjang",
+                    "Fitur: Sunroof, Honda Sensing, Electric Seat"
+                ]
+            },
+            fortuner: {
+                name: "Toyota Fortuner 2.4 VRZ",
+                year: "2019",
+                price: "Rp 3XX.000.000",
+                img: "https://www.otoinfo.id/wp-content/uploads/2024/02/Eksklusif-di-Tahun-2024-Toyota-Fortuner-VRZ-SUV-Berkelas-dengan-Inovasi-Hybrid.jpg",
+                specs: [
+                    "Mesin: 2.4L Diesel Turbo",
+                    "Transmisi: Automatic 6-Speed",
+                    "Warna: Super White",
+                    "Kilometer: 40.xxx",
+                    "Pajak: Panjang",
+                    "Fitur: Power Back Door, Leather Seat, ECO/Power Mode"
+                ]
+            },
+            pajero: {
+                name: "Mitsubishi Pajero Sport Dakar",
+                year: "2020",
+                price: "Rp 4XX.000.000",
+                img: "https://img.cintamobil.com/crop/760x480/2023/05/29/20230529092802-33fd.png",
+                specs: [
+                    "Mesin: 2.4L MIVEC Turbo Diesel",
+                    "Transmisi: Automatic 8-Speed",
+                    "Warna: Sterling Silver",
+                    "Kilometer: 32.xxx",
+                    "Pajak: Panjang",
+                    "Fitur: Sunroof, Paddle Shift, 7 Airbags"
+                ]
+            }
+        };
+
+        function showDetails(carKey) {
+            const car = carData[carKey];
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/2">
+                        <img src="${car.img}" class="w-full rounded-xl shadow-2xl mb-4" alt="${car.name}">
+                        <h2 class="text-3xl font-bold horizon-font text-yellow-500 mb-2">${car.name}</h2>
+                        <p class="text-2xl font-semibold opacity-80 mb-4">${car.price}</p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-xl font-bold mb-4 border-b border-white/10 pb-2">Spesifikasi & Kondisi Unit</h3>
+                        <ul class="space-y-3 opacity-90">
+                            ${car.specs.map(s => `<li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-500"></i> ${s}</li>`).join('')}
+                        </ul>
+                        <div class="mt-10 p-4 bg-white/5 rounded-lg">
+                            <p class="text-sm opacity-60 mb-3">Ingin info lebih lanjut? Hubungi kami melalui Direct Message Instagram.</p>
+                            <a href="https://instagram.com/ea_motor_magetan" target="_blank" 
+                               class="instagram-btn w-full py-3 rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg">
+                               <i class="fab fa-instagram"></i> Tanya lewat Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('carModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetails() {
+            document.getElementById('carModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+
+</body>
+</html>
